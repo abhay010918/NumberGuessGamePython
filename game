@@ -1,0 +1,66 @@
+#Making a simple game of number guessing  
+
+print("Project by ABHAY")
+logo = ''' _____ _     _____ ____  ____    _____  _     _____   _      _     _      ____  _____ ____ 
+/  __// \ /\/  __// ___\/ ___\  /__ __\/ \ /|/  __/  / \  /|/ \ /\/ \__/|/  _ \/  __//  __\
+| |  _| | |||  \  |    \|    \    / \  | |_|||  \    | |\ ||| | ||| |\/||| | //|  \  |  \/|
+| |_//| \_/||  /_ \___ |\___ |    | |  | | |||  /_   | | \||| \_/|| |  ||| |_\\|  /_ |    /
+\____\\____/\____\\____/\____/    \_/  \_/ \|\____\  \_/  \|\____/\_/  \|\____/\____\\_/\_\
+                                                                                           '''
+print(logo)
+ruels = input("Do you want to see the ruels for this game 'yes' or 'no': ")
+if ruels == "yes":
+    print("""
+1. Objective: Guess the randomly chosen number between 1 and 100 within a limited number of attempts.
+2. Difficulty Levels: Choose between 'easy' and 'hard' difficulty levels,
+   which determine the number of attempts available ('easy' provides 10 attempts, 'hard' provides 5.
+3. Gameplay:
+    Input your guess for the number within the specified range.
+    If the guess matches the randomly chosen number, you win the game.
+    If the guess is incorrect, receive hints indicating if your guess is too high or too low.
+4. Limited Attempts: You have a limited number of attempts to guess the number correctly.
+    For each incorrect guess, the remaining attempts decrease by 1.
+5. End Game:
+    If you guess the number correctly within the attempts, you win.
+    If you exhaust all attempts without guessing correctly,
+    the game ends, revealing the correct number and indicating that you've lost.    
+""")
+else:
+    print("You are the genius")
+import random
+print("Welcome to the number guessing game")
+numbers = list(range(1, 100))
+random_number = random.choice(numbers)
+print("Im thinking a number between 1 and 100")
+know_answer = input("Do you want to know the answer 'yes' or 'no': ")
+if know_answer == "yes":
+    print(f"Your answer is: {random_number}")
+else:
+    print("You are the real guesser")
+def game():
+    difficulty_lavel = input("Choose a difficulty. 'eazy' or 'hard': ")
+    if difficulty_lavel == "eazy":
+        life_left = 10
+        print(f"You have {life_left} attempts left to guess the number")
+    elif difficulty_lavel == "hard":
+        life_left = 5
+        print(f"You have {life_left} attempts left to guess the number")
+    else:
+        print("invalid")
+        return
+    while life_left > 0:
+        guessing_number = int(input("Make a guess: "))
+        if guessing_number == random_number:
+            print(f"You got it! The answer was {guessing_number}")
+            return
+        elif guessing_number > random_number:
+            print("Too heigh")
+        else:
+            print("too low")
+        life_left -= 1
+    if life_left == 0:
+        print(f"Game over! The number was {random_number}")
+    else:
+        print("You Choose wrong")
+
+game()
